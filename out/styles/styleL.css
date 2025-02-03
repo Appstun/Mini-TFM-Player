@@ -1,0 +1,29 @@
+.presenterFrame {
+  background: linear-gradient(275deg, #0000001a 31%, #00000000 100%);
+}
+
+body {
+  background: #ffffff;
+  color: #000000;
+}
+
+.buttonBright {
+  fill: #ffffff;
+  stroke: #000000;
+  stroke-width: 8px;
+}
+
+.buttonDark {
+  fill: #000000;
+  stroke: #ffffff;
+  stroke-width: 8px;
+}
+
+.highlight {
+  fill: #ff0073;
+  color:#ff0073
+}
+
+.link {
+  color:#696969
+}

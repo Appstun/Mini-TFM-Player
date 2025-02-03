@@ -1,0 +1,14 @@
+{
+  "name": "vorlage",
+  "version": "0.0.0",
+  "main": "out/index.js",
+  "author": "Appstun",
+  "license": "ISC",
+  "description": "- Vorlage -",
+  "dependencies": {
+    "typescript": "^5.7.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.0"
+  }
+}

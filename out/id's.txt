@@ -1,0 +1,24 @@
+# player.song.image
+# player.song.info.title
+# player.song.info.artist
+# player.song.info.link
+
+# player.control.button.play
+# player.control.button.pause
+# player.control.button.resync
+# player.control.button.resync.frame
+# player.control.slider.volume
+
+# window.button.popup
+# window.button.mode.dark
+# window.button.mode.light
+
+# window.style
+# window.banner.device.mobile
+# site.info
+# player.frame
+
+# presenter.image
+# presenter.name
+# presenter.show
+# presenter.showTime

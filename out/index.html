@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini TFM-Player</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20,400,0,0" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link id="window.style" rel="stylesheet" />
+    <script src="./scripts/darkMode.js"></script>
+    <link rel="icon" href="./images/logo_player.webp" type="image/x-icon" />
+    <meta property="og:title" content="Mini TFM-Player" />
+    <meta property="og:description" content="Listen to TruckersFM with this mini player." />
+    <meta property="og:image" content="./images/logo_player.webp" />
+    <meta property="og:url" content="https://yourwebsite.com" />
+    <meta content="#f1c40f" data-react-helmet="true" name="theme-color" />
+  </head>
+  <body onload="modeInit(); mainInit();" style="overflow: hidden">
+    <noscript>
+      <div class="bold banner">
+        <div style="font-size: 1.4em">This page requires JavaScript to work ...</div>
+        <div class="italic">Nothing will function.</div>
+      </div>
+    </noscript>
+    <div id="window.banner.device.mobile" class="bold banner" style="display: none">
+      <div style="font-size: 1.4em">This page is useless for mobile devices.</div>
+      <div class="italic">Pop-up's is on mobile ... meh</div>
+    </div>
+    <div id="player.frame" class="center" style="width: 100%; height: 120px; display: inline-flex">
+      <div style="height: 100%; display: flex; position: relative">
+        <img
+          class="imgSpin"
+          id="player.song.image"
+          style="height: 100%; width: 120px; border-radius: 99px"
+          alt="Song Cover"
+          src="./images/ph_logo.webp"
+        />
+        <div class="center playerAction" style="width: 120px; height: 120px; display: flex; position: absolute">
+          <div style="width: 16px; align-self: stretch; flex-direction: column; align-items: center; display: inline-flex"></div>
+          <div title="Play / Pause" style="flex: 1; justify-content: center; align-items: center; display: flex">
+            <svg
+              id="player.control.button.play"
+              onclick="playAudio()"
+              class="button buttonBright"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 -960 960 960"
+            >
+              <path
+                d="M320-258v-450q0-14 9-22t21-8q4 0 8 1t8 3l354 226q7 5 10.5 11t3.5 14q0 8-3.5 14T720-458L366-232q-4 2-8 3t-8 1q-12 0-21-8t-9-22Z"
+              />
+            </svg>
+            <svg
+              id="player.control.button.pause"
+              onclick="pauseAudio()"
+              class="button buttonBright pauseButton invisible"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 -960 960 960"
+            >
+              <path
+                d="M615-200q-24.75 0-42.37-17.63Q555-235.25 555-260v-440q0-24.75 17.63-42.38Q590.25-760 615-760h55q24.75 0 42.38 17.62Q730-724.75 730-700v440q0 24.75-17.62 42.37Q694.75-200 670-200h-55Zm-325 0q-24.75 0-42.37-17.63Q230-235.25 230-260v-440q0-24.75 17.63-42.38Q265.25-760 290-760h55q24.75 0 42.38 17.62Q405-724.75 405-700v440q0 24.75-17.62 42.37Q369.75-200 345-200h-55Z"
+              />
+            </svg>
+          </div>
+          <div
+            id="player.control.button.resync.frame"
+            title="Resync Audio"
+            onclick="resyncAudio()"
+            style="width: 16px; align-self: flex-end; flex-direction: column; align-items: center; display: inline-flex"
+          >
+            <svg
+              id="player.control.button.resync"
+              class="button buttonBright resyncButton"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 -960 960 960"
+            >
+              <path
+                d="M220-477q0 63 23.5 109.5T307-287l30 21v-94q0-13 8.5-21.5T367-390q13 0 21.5 8.5T397-360v170q0 13-8.5 21.5T367-160H197q-13 0-21.5-8.5T167-190q0-13 8.5-21.5T197-220h100l-15-12q-64-51-93-111t-29-134q0-94 49.5-171.5T342-766q11-5 21 0t14 16q5 11 0 22.5T361-710q-64 34-102.5 96.5T220-477Zm520-6q0-48-23.5-97.5T655-668l-29-26v94q0 13-8.5 21.5T596-570q-13 0-21.5-8.5T566-600v-170q0-13 8.5-21.5T596-800h170q13 0 21.5 8.5T796-770q0 13-8.5 21.5T766-740H665l15 14q60 56 90 120t30 123q0 93-48 169.5T623-195q-11 6-22.5 1.5T584-210q-5-11 0-22.5t16-17.5q65-33 102.5-96T740-483Z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <input
+        id="player.control.slider.volume"
+        oninput="adjustVolume(this.value)"
+        type="range"
+        orient="vertical"
+        style="height: 100px; cursor: pointer"
+        min="0"
+        max="1"
+        value="0.1"
+        step="0.01"
+      />
+      <div class="infoFrame">
+        <div class="left" style="gap: 6px; display: inline-flex">
+          <div class="left" style="flex: 1; flex-direction: column; display: inline-flex">
+            <div class="center" style="white-space: nowrap">
+              <span id="player.song.info.title" class="bold fSizeBig text">​</span>
+              <a id="player.song.info.link" title="View Song On Spotify" target="_blank">
+                <svg class="button buttonDark" xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960">
+                  <path
+                    d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h240q17 0 28.5 11.5T480-800q0 17-11.5 28.5T440-760H200v560h560v-240q0-17 11.5-28.5T800-480q17 0 28.5 11.5T840-440v240q0 33-23.5 56.5T760-120H200Zm560-584L416-360q-11 11-28 11t-28-11q-11-11-11-28t11-28l344-344H600q-17 0-28.5-11.5T560-800q0-17 11.5-28.5T600-840h200q17 0 28.5 11.5T840-800v200q0 17-11.5 28.5T800-560q-17 0-28.5-11.5T760-600v-104Z"
+                  />
+                </svg>
+              </a>
+            </div>
+            <div id="player.song.info.artist" class="fSizeMedium text">​</div>
+          </div>
+          <div class="actionFrame">
+            <div title="Open As Pop-Up">
+              <svg
+                id="window.button.popup"
+                onclick="createPopup()"
+                class="button highlight"
+                xmlns="http://www.w3.org/2000/svg"
+                height="16px"
+                viewBox="0 -960 960 960"
+              >
+                <path d="M96-96v-480h144v-288h624v480H720v288H96Zm72-72h480v-264H168v264Zm552-288h72v-264H312v144h408v120Z" />
+              </svg>
+            </div>
+            <div title="Enable Dark Mode">
+              <svg
+                id="window.button.mode.dark"
+                onclick="toggleDarkMode()"
+                class="button buttonDark"
+                xmlns="http://www.w3.org/2000/svg"
+                height="16px"
+                viewBox="0 -960 960 960"
+              >
+                <path
+                  d="M479.96-144Q340-144 242-242t-98-238q0-140 97.93-238t237.83-98q13.06 0 25.65 1 12.59 1 25.59 3-39 29-62 72t-23 92q0 85 58.5 143.5T648-446q49 0 92-23t72-62q2 13 3 25.59t1 25.65q0 139.9-98.04 237.83t-238 97.93Zm.04-72q82 0 148.78-47.07Q695.55-310.15 727-386q-20 5-39.67 8.5Q667.67-374 648-374q-113.86 0-193.93-80.07Q374-534.14 374-648q0-19.67 3.5-39.33Q381-707 386-727q-75.85 31.45-122.93 98.22Q216-562 216-480q0 110 77 187t187 77Zm-14-250Z"
+                />
+              </svg>
+            </div>
+            <div title="Disable Dark Mode">
+              <svg
+                id="window.button.mode.light"
+                onclick="toggleDarkMode()"
+                class="button buttonDark invisible"
+                xmlns="http://www.w3.org/2000/svg"
+                height="16px"
+                viewBox="0 -960 960 960"
+              >
+                <path
+                  d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm-.23 72Q400-288 344-344.23q-56-56.22-56-136Q288-560 344.23-616q56.22-56 136-56Q560-672 616-615.77q56 56.22 56 136Q672-400 615.77-344q-56.22 56-136 56ZM216-444H48v-72h168v72Zm696 0H744v-72h168v72ZM444-744v-168h72v168h-72Zm0 696v-168h72v168h-72ZM269-642 166-742l51-55 102 104-50 51Zm474 475L642-268l49-51 103 101-51 51ZM640-691l102-101 51 49-100 103-53-51ZM163-217l105-99 49 47-98 104-56-52Zm317-263Z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="bottomSection">
+          <div class="presenterFrame">
+            <div class="infoFrame">
+              <div id="presenter.name" class="presenterText bold fSizeSmall text">
+                <a class="link button" href="https://truckers.fm" target="_blank">TruckersFM</a>
+              </div>
+              <div id="presenter.show" class="presenterText fSizeTiny text">Your Drive, Your Music</div>
+              <div id="presenter.showTime" class="presenterText fSizeTiny text italic"></div>
+            </div>
+            <img
+              class="imgSpin2"
+              id="presenter.image"
+              style="height: 60px; border-radius: 99px"
+              alt="Presenter Image"
+              src="./images/ph_name.webp"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="site.info" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center">
+      <div style="height: 80px"></div>
+      <div style="font-size: 1.4em" class="highlight bold">best as pop-up window</div>
+      <h1>click on the pink icon on the top right</h1>
+      <div class="button" title="Open As Pop-Up" onclick="createPopup()" style="text-decoration: underline; font-size: 1.4em">
+        or click here
+      </div>
+      <div style="font-size: 1em; padding-top: 6px" class="italic">
+        <div>You can click the icon at the bottom right of the song image to resync the audio.</div>
+        <div>Also use the page zoom to make things bigger or smaller.</div>
+      </div>
+      <div style="height: 40px"></div>
+      <div style="font-size: 0.8em">
+        <div>This site is not a official website of <a class="link button" href="https://truckers.fm" target="_blank">TruckersFM</a>.</div>
+        <div>Special thanks to TruckersFM for making the API usable on other sites.</div>
+      </div>
+    </div>
+    <script src="./scripts/script.js"></script>
+  </body>
+</html>
