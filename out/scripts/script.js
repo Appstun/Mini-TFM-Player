@@ -15,7 +15,6 @@ const playerResyncButtonElement = document.getElementById("player.control.button
 const playerResyncButtonFrameElement = document.getElementById("player.control.button.resync.frame");
 const playerVolumeElement = document.getElementById("player.control.slider.volume");
 const playerFrameElement = document.getElementById("player.frame");
-const siteInfoElement = document.getElementById("site.info");
 const audioPlayer = new Audio("https://live.truckers.fm");
 function mainInit() {
     audioPlayer.volume = audioVolume;
@@ -26,7 +25,7 @@ function mainInit() {
         document.getElementById("window.banner.device.mobile")?.remove();
     if (checkIsPopup()) {
         popupButtonElelment.classList.add("invisible");
-        siteInfoElement.style.display = "none";
+        document.getElementById("site.info")?.remove();
         for (let i = 0; i < 4; i++)
             setTimeout(() => resizeWindowToContent(400, 120), 50 * i);
         setTimeout(() => window.scrollTo(0, 0), 210);

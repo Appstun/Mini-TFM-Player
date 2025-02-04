@@ -15,7 +15,6 @@ const playerResyncButtonElement = document.getElementById("player.control.button
 const playerResyncButtonFrameElement = document.getElementById("player.control.button.resync.frame")! as HTMLDivElement;
 const playerVolumeElement = document.getElementById("player.control.slider.volume")! as HTMLInputElement;
 const playerFrameElement = document.getElementById("player.frame")! as HTMLDivElement;
-const siteInfoElement = document.getElementById("site.info")! as HTMLDivElement;
 const audioPlayer: HTMLAudioElement = new Audio("https://live.truckers.fm");
 
 function mainInit() {
@@ -27,7 +26,7 @@ function mainInit() {
 
   if (checkIsPopup()) {
     popupButtonElelment.classList.add("invisible");
-    siteInfoElement.style.display = "none";
+    document.getElementById("site.info")?.remove();
 
     for (let i = 0; i < 4; i++) setTimeout(() => resizeWindowToContent(400, 120), 50 * i);
     setTimeout(() => window.scrollTo(0, 0), 210);
