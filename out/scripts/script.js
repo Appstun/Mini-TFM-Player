@@ -194,5 +194,5 @@ function imageloaderRemoval(element) {
         }, 10);
     }
 }
-setInterval(() => setCurrentSong(), 10000);
-setInterval(() => setCurrentPresenter(), 50000);
+setInterval(() => setCurrentSong(), 15000);
+setInterval(() => setCurrentPresenter(), 60000);
