@@ -25,3 +25,10 @@ A player for the [TruckersFM](https://truckers.fm) audio stream as pop-up window
 
 The icons used come from [Google Fonts](https://fonts.google.com/icons).<br>
 The [custom images](https://github.com/Appstun/Mini-TFM-Player/tree/main/out/images) are designed by me. (inspired by TruckersFM)
+
+<br>
+
+> [!TIP]
+> If you have **Always On Top** in [PowerToys](https://learn.microsoft.com/windows/powertoys/) activated, you can use it to pin the pop-up window to the top of the screen. <br>
+> You can download and install it from the [Github Releases](github.com/microsoft/PowerToys/releases/latest) or from the [Microsoft Store](apps.microsoft.com/detail/xp89dcgq3k6vld). Then activate the `Always On Top` module and use the key combination in the pop-up window. <br>
+> *Alternatively, you can also use any other program that pins a window to the top of the screen.*
