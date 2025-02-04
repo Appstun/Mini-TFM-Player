@@ -1,7 +1,6 @@
 "use strict";
 let audioVolume = localStorage.getItem("player.control.volume") ? parseFloat(localStorage.getItem("player.control.volume")) : 0.1;
 const popupButtonElelment = document.getElementById("window.button.popup");
-const windowMobileDeviceElement = document.getElementById("window.banner.device.mobile");
 const playerSongTitleElement = document.getElementById("player.song.info.title");
 const playerSongArtistElement = document.getElementById("player.song.info.artist");
 const playerSongImageElement = document.getElementById("player.song.image");
@@ -22,18 +21,30 @@ function mainInit() {
     audioPlayer.volume = audioVolume;
     playerVolumeElement.value = audioVolume.toString();
     if (checkIsMobile())
-        windowMobileDeviceElement.style.display = "block";
+        document.getElementById("window.banner.device.mobile")?.classList.remove("invisible");
+    else
+        document.getElementById("window.banner.device.mobile")?.remove();
     if (checkIsPopup()) {
         popupButtonElelment.classList.add("invisible");
         siteInfoElement.style.display = "none";
-        resizeWindowToContent(400, 120);
+        for (let i = 0; i < 4; i++)
+            setTimeout(() => resizeWindowToContent(400, 120), 50 * i);
+        setTimeout(() => window.scrollTo(0, 0), 210);
     }
     else
         popupButtonElelment.classList.remove("invisible");
-    // setCurrentPresenter();
-    // setCurrentSong();
+    if (window.location.hostname != "127.0.0.1") {
+        setCurrentPresenter();
+        setCurrentSong();
+    }
 }
+let firstPlay = true;
 async function playAudio() {
+    if (firstPlay) {
+        firstPlay = false;
+        resyncAudio();
+        return;
+    }
     playerPlayButtonElement.classList.add("invisible");
     playerPauseButtonElement.classList.remove("invisible");
     await audioPlayer.play();
@@ -81,6 +92,7 @@ async function setCurrentSong() {
     playerSongTitleElement.title = song.title;
     playerSongArtistElement.textContent = song.artist;
     playerSongArtistElement.title = song.artist;
+    playerSongLinkElement.classList.remove("invisible");
     playerSongLinkElement.href = song.spotifyLink;
     playerSongImageElement.src = song.albumLink;
     imageloaderRemoval(playerSongImageElement);
@@ -181,9 +193,5 @@ function imageloaderRemoval(element) {
         }, 10);
     }
 }
-setInterval(() => {
-    setCurrentSong();
-}, 10000);
-setInterval(() => {
-    setCurrentPresenter();
-}, 60000);
+setInterval(() => setCurrentSong(), 10000);
+setInterval(() => setCurrentPresenter(), 50000);

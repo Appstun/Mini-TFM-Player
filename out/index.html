@@ -10,9 +10,9 @@
     <script src="./scripts/darkMode.js"></script>
     <link rel="icon" href="./images/logo_player.webp" type="image/x-icon" />
     <meta property="og:title" content="Mini TFM-Player" />
-    <meta property="og:description" content="Listen to TruckersFM with this mini player." />
-    <meta property="og:image" content="./images/logo_player.webp" />
-    <meta property="og:url" content="https://yourwebsite.com" />
+    <meta property="og:description" content="Listen to TruckersFM in a pop-up player." />
+    <meta property="og:image" content="https://player.appstun.net/images/logo_player.webp" />
+    <meta property="og:url" content="https://player.appstun.net" />
     <meta content="#f1c40f" data-react-helmet="true" name="theme-color" />
   </head>
   <body onload="modeInit(); mainInit();" style="overflow: hidden">
@@ -22,9 +22,17 @@
         <div class="italic">Nothing will function.</div>
       </div>
     </noscript>
-    <div id="window.banner.device.mobile" class="bold banner" style="display: none">
+    <div id="window.banner.device.mobile" class="bold banner invisible">
+      <div onclick="document.getElementById('window.banner.device.mobile').remove()" class="button buttonDark" style="position: absolute" title="Close Banner">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="20px">
+          <path
+            d="M480-424 284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536-480l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480-424Z"
+          />
+        </svg>
+      </div>
       <div style="font-size: 1.4em">This page is useless for mobile devices.</div>
-      <div class="italic">Pop-up's is on mobile ... meh</div>
+      <div class="italic">Pop-up windows are displayed as normal pages on mobile.</div>
+      <a class="italic" href="https://truckers.fm">For a better experience, visit the official TFM website.</a>
     </div>
     <div id="player.frame" class="center" style="width: 100%; height: 120px; display: inline-flex">
       <div style="height: 100%; display: flex; position: relative">
@@ -93,11 +101,17 @@
       />
       <div class="infoFrame">
         <div class="left" style="gap: 6px; display: inline-flex">
-          <div class="left" style="flex: 1; flex-direction: column; display: inline-flex">
-            <div class="center" style="white-space: nowrap">
-              <span id="player.song.info.title" class="bold fSizeBig text">​</span>
-              <a id="player.song.info.link" title="View Song On Spotify" target="_blank">
-                <svg class="button buttonDark" xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960">
+          <div class="left songFrame" style="flex: 1; flex-direction: column">
+            <div style="display: flex">
+              <div id="player.song.info.title" class="bold fSizeBig text">Loading ....</div>
+              <a class="invisible" id="player.song.info.link" title="View Song On Spotify" target="_blank">
+                <svg
+                  class="button buttonDark"
+                  style="margin: 5px"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="12px"
+                  viewBox="0 -960 960 960"
+                >
                   <path
                     d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h240q17 0 28.5 11.5T480-800q0 17-11.5 28.5T440-760H200v560h560v-240q0-17 11.5-28.5T800-480q17 0 28.5 11.5T840-440v240q0 33-23.5 56.5T760-120H200Zm560-584L416-360q-11 11-28 11t-28-11q-11-11-11-28t11-28l344-344H600q-17 0-28.5-11.5T560-800q0-17 11.5-28.5T600-840h200q17 0 28.5 11.5T840-800v200q0 17-11.5 28.5T800-560q-17 0-28.5-11.5T760-600v-104Z"
                   />
