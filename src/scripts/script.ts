@@ -75,7 +75,7 @@ function adjustVolume(volume: number) {
 }
 
 function createPopup() {
-  const popup = window.open(".", "popup", `width=40px,height=40px`)!;
+  const popup = window.open(".?popup", "popup", `width=40px,height=40px`)!;
   popup.focus();
 }
 function resizeWindowToContent(overrideWidth: number | null = null, overrideHeight: number | null = null) {
@@ -169,6 +169,7 @@ async function getTFMPresenter() {
 }
 
 function checkIsPopup() {
+  if(new URLSearchParams(window.location.search).has("popup")) return true;
   return window.opener && window.opener !== window;
 }
 
