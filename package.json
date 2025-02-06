@@ -1,14 +1,14 @@
 {
-  "name": "vorlage",
-  "version": "0.0.0",
+  "name": "mini-tfm-player",
+  "version": "1.2.0",
   "main": "out/index.js",
   "author": "Appstun",
-  "license": "ISC",
-  "description": "- Vorlage -",
+  "license": "MIT",
+  "description": "A player that plays TFM in a small pop-up window.",
   "dependencies": {
     "typescript": "^5.7.3"
   },
   "devDependencies": {
-    "@types/node": "^22.13.0"
+    "@types/node": "^22.13.1"
   }
 }

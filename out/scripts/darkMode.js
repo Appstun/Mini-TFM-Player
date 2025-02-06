@@ -1,5 +1,6 @@
 "use strict";
-let darkModeEnabled = localStorage.getItem("window.darkMode")?.toLowerCase() === "true";
+var _a;
+let darkModeEnabled = ((_a = localStorage.getItem("window.darkMode")) === null || _a === void 0 ? void 0 : _a.toLowerCase()) === "true";
 const darkModeElement = document.getElementById("window.style");
 let iconDarkElement = document.getElementById("window.button.mode.dark");
 let iconLightElement = document.getElementById("window.button.mode.light");

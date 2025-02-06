@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mini TFM-Player</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20,400,0,0" />
     <link rel="stylesheet" href="./styles/style.css" />
     <link id="window.style" rel="stylesheet" />
     <script src="./scripts/darkMode.js"></script>
@@ -15,7 +14,7 @@
     <meta property="og:url" content="https://player.appstun.net" />
     <meta content="#f1c40f" data-react-helmet="true" name="theme-color" />
   </head>
-  <body onload="modeInit(); mainInit();" style="overflow: hidden">
+  <body onload="modeInit();" style="overflow: hidden">
     <noscript>
       <div class="bold banner">
         <div style="font-size: 1.4em">This page requires JavaScript to work ...</div>
@@ -23,7 +22,12 @@
       </div>
     </noscript>
     <div id="window.banner.device.mobile" class="bold banner invisible">
-      <div onclick="document.getElementById('window.banner.device.mobile').remove()" class="button buttonDark" style="position: absolute" title="Close Banner">
+      <div
+        onclick="document.getElementById('window.banner.device.mobile').remove()"
+        class="button buttonDark"
+        style="position: absolute"
+        title="Close Banner"
+      >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="20px">
           <path
             d="M480-424 284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536-480l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480-424Z"
@@ -46,20 +50,13 @@
         <div class="center playerAction" style="width: 120px; height: 120px; display: flex; position: absolute">
           <div style="width: 16px; align-self: stretch; flex-direction: column; align-items: center; display: inline-flex"></div>
           <div title="Play / Pause" style="flex: 1; justify-content: center; align-items: center; display: flex">
-            <svg
-              id="player.control.button.play"
-              onclick="playAudio()"
-              class="button buttonBright"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 -960 960 960"
-            >
+            <svg id="player.control.button.play" class="button buttonBright" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
               <path
                 d="M320-258v-450q0-14 9-22t21-8q4 0 8 1t8 3l354 226q7 5 10.5 11t3.5 14q0 8-3.5 14T720-458L366-232q-4 2-8 3t-8 1q-12 0-21-8t-9-22Z"
               />
             </svg>
             <svg
               id="player.control.button.pause"
-              onclick="pauseAudio()"
               class="button buttonBright pauseButton invisible"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 -960 960 960"
@@ -72,7 +69,6 @@
           <div
             id="player.control.button.resync.frame"
             title="Resync Audio"
-            onclick="resyncAudio()"
             style="width: 16px; align-self: flex-end; flex-direction: column; align-items: center; display: inline-flex"
           >
             <svg
@@ -90,7 +86,6 @@
       </div>
       <input
         id="player.control.slider.volume"
-        oninput="adjustVolume(this.value)"
         type="range"
         orient="vertical"
         style="height: 100px; cursor: pointer"
@@ -124,7 +119,6 @@
             <div title="Open As Pop-Up">
               <svg
                 id="window.button.popup"
-                onclick="createPopup()"
                 class="button highlight"
                 xmlns="http://www.w3.org/2000/svg"
                 height="16px"
@@ -187,9 +181,7 @@
       <div style="height: 80px"></div>
       <div style="font-size: 1.4em" class="highlight bold">best as pop-up window</div>
       <h1>click on the pink icon on the top right</h1>
-      <div class="button" title="Open As Pop-Up" onclick="createPopup()" style="text-decoration: underline; font-size: 1.4em">
-        or click here
-      </div>
+      <div class="button" title="Open As Pop-Up" style="text-decoration: underline; font-size: 1.4em">or click here</div>
       <div style="font-size: 1em; padding-top: 6px" class="italic">
         <div>You can click the icon at the bottom right of the song image to resync the audio.</div>
         <div>Also use the page zoom to make things bigger or smaller.</div>
@@ -199,7 +191,11 @@
         <div>This site is not a official website of <a class="link button" href="https://truckers.fm" target="_blank">TruckersFM</a>.</div>
         <div>Special thanks to TruckersFM for making the API usable on other sites.</div>
       </div>
+      <div style="height: 12px"></div>
+      <a class="link button" target="_blank" style="font-size: 0.7em" href="https://github.com/Appstun/Mini-TFM-Player"
+        >View on GitHub</a
+      >
     </div>
-    <script src="./scripts/script.js"></script>
+    <script type="module" src="./scripts/script.js" defer></script>
   </body>
 </html>
