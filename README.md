@@ -26,7 +26,7 @@ A player for the [TruckersFM](https://truckers.fm) audio stream as pop-up window
 <br>
 
 I use icons from [Google Fonts](https://fonts.google.com/icons).<br>
-To avoid sending multiple requests per minute to the TruckersFM API, I use a modified version of [Icecast MetadataJS.](https://github.com/eshaz/icecast-metadata-js)
+To avoid sending multiple requests per minute to the TruckersFM API, I use a self modified version of [Icecast MetadataJS.](https://github.com/eshaz/icecast-metadata-js)
 The [custom images](https://github.com/Appstun/Mini-TFM-Player/tree/main/out/images) are designed by me. (inspired by TruckersFM)
 
 <br>
