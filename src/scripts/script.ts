@@ -4,6 +4,10 @@ import { IcecastStream } from "./icecastStream.js";
 
 let audioVolume = localStorage.getItem("player.control.volume") ? parseFloat(localStorage.getItem("player.control.volume")!) : 0.1;
 
+function getAudioUrl() {
+  return `https://live.truckers.fm?nocache=${new Date().getTime()}`;
+}
+
 const popupButtonElelment = document.getElementById("window.button.popup")!;
 const playerSongTitleElement = document.getElementById("player.song.info.title")! as HTMLDivElement;
 const playerSongArtistElement = document.getElementById("player.song.info.artist")! as HTMLDivElement;
@@ -19,7 +23,7 @@ const playerResyncButtonElement = document.getElementById("player.control.button
 const playerResyncButtonFrameElement = document.getElementById("player.control.button.resync.frame")! as HTMLDivElement;
 const playerVolumeElement = document.getElementById("player.control.slider.volume")! as HTMLInputElement;
 const playerFrameElement = document.getElementById("player.frame")! as HTMLDivElement;
-const audioPlayer: HTMLAudioElement = new Audio("https://live.truckers.fm");
+const audioPlayer: HTMLAudioElement = new Audio(getAudioUrl());
 
 function mainInit() {
   audioPlayer.volume = audioVolume;
@@ -38,8 +42,8 @@ function mainInit() {
 
   if (BrowserData.isTabVisible()) IcecastStream.resetReadableStream(audioPlayer.src);
   else {
-    Window.setCurrentSong()
-    Window.setCurrentPresenter()
+    Window.setCurrentSong();
+    Window.setCurrentPresenter();
   }
 }
 
@@ -65,6 +69,7 @@ namespace Player {
     playerResyncButtonFrameElement.classList.add("spinCC");
     playerResyncButtonElement.style.fill = "#f1c40f";
     try {
+      audioPlayer.src = getAudioUrl();
       audioPlayer.load();
     } catch (e) {
       console.error("Failed to resync audio");
@@ -149,6 +154,7 @@ playerPauseButtonElement.addEventListener("click", Player.pauseAudio);
 playerResyncButtonElement.addEventListener("click", Player.resyncAudio);
 playerVolumeElement.addEventListener("input", () => Player.adjustVolume(parseFloat(playerVolumeElement.value)));
 popupButtonElelment.addEventListener("click", Window.createPopup);
+document.getElementById("window.info.popup")?.addEventListener("click", Window.createPopup);
 
 let lastTitle = "";
 let firstFetch = true;
