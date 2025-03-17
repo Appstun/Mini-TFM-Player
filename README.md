@@ -33,4 +33,5 @@ The [custom images](https://github.com/Appstun/Mini-TFM-Player/tree/main/out/ima
 
 > [!TIP]
 > If you have **Always On Top** in [PowerToys](https://learn.microsoft.com/windows/powertoys/) activated, you can use it to pin the pop-up window to the top of the screen. <br>
-> You can download and install it from the [Github Releases](github.com/microsoft/PowerToys/releases/latest) or from the [Microsoft Store](apps.microsoft.com/detail/xp89dcgq3k6vld). Then activate the `Always On Top` module and use the key combination of this module on the pop-up window. <br> > *Alternatively, you can also use any other program that pins a window to the top of the screen.*
+> You can download and install it from the [Github Releases](github.com/microsoft/PowerToys/releases/latest) or from the [Microsoft Store](apps.microsoft.com/detail/xp89dcgq3k6vld). Then activate the `Always On Top` module and use the key combination of this module on the pop-up window. <br>
+> *Alternatively, you can also use any other program that pins a window to the top of the screen.*
